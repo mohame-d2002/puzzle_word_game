@@ -1,0 +1,68 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="card shadow-lg p-4" style="max-width: 420px; width: 100%; border-radius: 1rem; background-color: #e3f2fd;">
+    <h2 class="text-center text-success mb-3">Picture Word Puzzle</h2>
+    <h3 class="text-center mb-4 fw-bold">Sign Up</h3>
+
+    <form method="POST" class="needs-validation" novalidate>
+      {% csrf_token %}
+      {% if form.errors %}
+    <div class="alert alert-danger">
+        {{ form.errors }}
+    </div>
+      {% endif %}
+      <div class="mb-3">
+        <label class="form-label">First name:</label>
+        {{ form.first_name }}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Last name:</label>
+        {{ form.last_name }}
+      </div>
+      {% if form.age %}
+      <div class="mb-3">
+        <label class="form-label">Age:</label>
+        {{ form.age }}
+      </div>
+      {% endif %}
+      {% if form.school_grade %}
+      <div class="mb-3">
+        <label class="form-label">School grade:</label>
+        {{ form.school_grade }}
+      </div>
+      {% endif %}
+      {% if form.email %}
+      <div class="mb-3">
+        <label class="form-label">Email:</label>
+        {{ form.email }}
+      </div>
+   
+      {% endif %}
+       <div class="mb-3">
+        <label class="form-label">Password:</label>
+        {{ form.password1 }}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Confirm Password:</label>
+        {{ form.password2 }}
+      </div>
+
+      <!-- What do you like -->
+    <div class="mb-3">
+    <label for="id_what_do_you_like" class="form-label">What do you like?</label>
+    {{ form.what_do_you_like }}
+  </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success rounded-pill">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- JavaScript for button selection -->
+
+
+{% endblock content %}

@@ -1,0 +1,133 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<div class="level_one_background">
+<div class="container d-flex justify-content-center align-items-center vh-100" style="background-color: transparent;" >
+  <div class="text-center p-5 rounded-4 shadow bg-white">
+    <h2 class="mb-4 text-success fw-bold">Picture Word Puzzle</h2>
+
+    <div class="d-grid gap-3">
+    
+    {% if level >= 1 %}
+<a href="{% url 'level_one' %}" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3">
+ Level 1
+</a>
+{% else %}
+<a href="#" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3 disabled" 
+   title="Reach level 3 to unlock">
+    <i class="bi bi-lock-fill me-2"></i> Level 1
+</a>
+{% endif %}
+      
+
+{% if level >= 2 %}
+<a href="{% url 'level_two' %}" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3">
+ Level 2
+</a>
+{% else %}
+<a href="#" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3 disabled" 
+   title="Reach level 3 to unlock">
+    <i class="bi bi-lock-fill me-2"></i> Level 2
+</a>
+{% endif %}
+
+
+{% if level >= 3 %}
+<a href="{% url 'level_three' %}" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3">
+ Level 3
+</a>
+{% else %}
+<a href="#" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3 disabled" 
+   title="Reach level 3 to unlock">
+    <i class="bi bi-lock-fill me-2"></i> Level 3
+</a>
+{% endif %}
+
+{% if level >= 4 %}
+<a href="{% url 'level_four' %}" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3">
+ Level 4
+</a>
+{% else %}
+<a href="#" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3 disabled" 
+   title="Reach level 3 to unlock">
+    <i class="bi bi-lock-fill me-2"></i> Level 4
+</a>
+{% endif %}
+
+{% if level >= 5 %}
+<a href="{% url 'level_five' %}" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3">
+ Level 5
+</a>
+{% else %}
+<a href="#" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3 disabled" 
+   title="Reach level 3 to unlock">
+    <i class="bi bi-lock-fill me-2"></i> Level 5
+</a>
+{% endif %}
+
+
+{% if level >= 6 %}
+<a href="{% url 'level_six' %}" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3">
+ Level 6
+</a>
+{% else %}
+<a href="#" class="btn btn-warning text-uppercase fw-bold text-danger rounded-3 disabled" 
+   title="Reach level 3 to unlock">
+    <i class="bi bi-lock-fill me-2"></i> Level 6
+</a>
+{% endif %}
+<a href="{% url 'home' %}" class="btn btn-primary text-uppercase fw-bold text-info rounded-3" 
+   title="    You won all Levels">
+     Home
+</a>
+
+{% if level > 6 %}
+<a href="#" class="btn btn-primary text-uppercase fw-bold text-info rounded-3 disabled" 
+   title="    You won all Levels">
+     You won all Levels
+</a>
+{% endif %}
+
+{% if level > 6 %}
+ <form method="POST" action="{% url 'restart_level' %}">
+    {% csrf_token %}
+     <button class="btn btn-primary text-uppercase fw-bold text-info rounded-3" type="submit">Restart The Game</button>
+ </form>
+{% endif %}
+
+    </div>
+  </div>
+</div>
+</div>
+<!--
+{{ level|json_script:"level-data" }}
+
+<script>
+
+    const level = JSON.parse(document.getElementById('level-data').textContent);
+
+    console.log("Current level:", level);
+
+    if (!Number.isNaN(level) && 6 > level) {
+    fetch("{% url 'restart_level' %}", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": "{{ csrf_token }}"
+      },
+      body: JSON.stringify({})
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === "success") {
+        console.log("✅ Level increased to:", data.new_level);
+      } else {
+        console.error("⚠️ Failed to update level.");
+      }
+    })
+    .catch(err => console.error("❌ Error:", err));
+
+}
+-->
+</script>
+{% endblock content %}
